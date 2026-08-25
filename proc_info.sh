@@ -8,7 +8,6 @@ for pid_dir in /proc/[0-9]*; do
     pid=$(basename "$pid_dir")
 
     if [ -f "$pid_dir/status" ]; then
-        # Извлекаем имя, PPID и состояние процесса из /proc/PID/status
         name=$(awk '/^Name:/ {print $2}' "$pid_dir/status")
         ppid=$(awk '/^PPid:/ {print $2}' "$pid_dir/status")
         state=$(awk '/^State:/ {print $2}' "$pid_dir/status")
